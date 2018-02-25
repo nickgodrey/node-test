@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+</style>
+</head>
+<body style="background-color:SeaShell;">
+<h1 style="text-align:center;">Welcome to page3!</h1>
+<p style="text-align:center;">Test more DynamoDB shenanigans</p>
+<p>
+<input id="email">
+Email</p>
+<p>
+<input id="name">
+Name</p>
+<p>
+<input id="address">
+Address</p>
+
+<button type="button" onclick="readTest()">Test DB Read</button>
+<button type="button" onclick="insertTest()">Test DB Insert</button>
+<button type="button" onclick="debug()">Debug</button>
+
+<br><br>
+
+<div id="output">
+Output
+</div>
+
+<br>
+
+<script>
+function readTest() {
+  var email = document.getElementById("email").value;
+  document.getElementById("output").innerHTML = ""
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+	  var parsed = JSON.parse(this.responseText)
+      document.getElementById("output").innerHTML = parsed.NAME.S
+	  document.getElementById("name").value = parsed.NAME.S
+	  document.getElementById("address").value = parsed.ADDRESS.S
+    }
+  };
+  var getString = "get_from_table.js?table=TEST_USERS&key="+email
+  document.getElementById("output").innerHTML = getString
+  xhttp.open("GET", getString, true);
+  xhttp.send();
+}
+</script>
+
+<script>
+function insertTest() {
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      document.getElementById("output").innerHTML =
+      this.responseText;
+    }
+  };
+  
+  if (email === ""){
+	document.getElementById("output").innerHTML = "Email cannot be blank"
+  } else if (name === ""){
+	document.getElementById("output").innerHTML = "Name cannot be blank"
+  } else if (Address === ""){
+	document.getElementById("output").innerHTML = "Address cannot be blank"
+  } else{
+    xhttp.open("GET", "dynamo_insert_user_id.js?table=TEST_USERS&USER_ID=test@test.com&NAME=TestGuy1&ADDRESS=123TestStreet", true);
+    xhttp.send();
+  }
+}
+</script>
+
+<script>
+function debug() {
+  document.getElementById("output").innerHTML = ""
+
+  var email = document.getElementById("email").value;
+  var name = document.getElementById("name").value;
+  var address = document.getElementById("address").value;
+  
+  if (email === ""){
+	document.getElementById("output").innerHTML = "Email cannot be blank"
+  }
+}
+</script>
+
+<hr>
+<p style="text-align:center;"><a href="\index.html">Back to the main page!</a> </p>
+</body>
+</html>
