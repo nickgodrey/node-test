@@ -21,6 +21,11 @@ var params = {
 ddb.getItem(params, function(err, data) {
   if (err) {
     console.log("Error", err);
+  } else if (data.Item === undefined) {
+	console.log("ddb.getItem returned undefined");
+	// Should probably return some JSON or something instead of just a string?
+	process.send("ERROR")
+	return "ERROR"
   } else {
     console.log("Success", data.Item);
 	console.log(data.Item);
