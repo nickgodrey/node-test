@@ -6,6 +6,7 @@ var ddb = new AWS.DynamoDB({apiVersion: '2012-08-10'});
 var params = {
   TableName: 'CUSTOMER_LIST_2',
   Item: {
+    'CUSTOMER_ID' : {N: '002'},
     'CUSTOMER_NAME' : {S: 'Michard Moe'},
 	'CUSTOMER_ADDRESS' : {S: '456 Garlic Street'},
   }

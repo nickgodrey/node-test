@@ -108,28 +108,5 @@ function runScript(scriptPath, args, callback) {
           callback(err, m);
       });
     });
-	
-	//process.on('message', (m) => {
-	//	console.log('PARENT got message:', m);
-	//	callback(m)
-    //});
-	
-	
-    // execute the callback once the process has finished running
-    //process.on('exit', function (code) {
-		//console.log("Exiting runScript");
-		//console.log("Process: ", process);
-		//console.log("code: " + code);
-        //if (invoked) return;
-        //invoked = true;
-		//console.log("invoked?");
-        //var err = code === 0 ? null : new Error('exit code ' + code);
-        //callback(err);
-    //});
 }
 
-// Now we can run a script and invoke a callback when complete, e.g.
-//runScript('./some-script.js', function (err) {
-//    if (err) throw err;
-//    console.log('finished running some-script.js');
-//});
