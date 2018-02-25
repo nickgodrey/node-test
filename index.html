@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+</style>
+</head>
+<body style="background-color:PaleGoldenrod;">
+<h1 style="text-align:center;">Welcome to the test project!</h1>
+<p style="text-align:center;">This is a super cool test project.</p>
+<img src="img\dogs.jpg" alt="Chihuahua and Princess!" style="width:500px;height:400px;">
+<p style="text-align:center;"><a href="\page2.html">Check out the second page!</a> </p>
+
+<button onclick="this.innerHTML=Date()">The time is?</button>
+
+<div id="demo">
+<h1>The XMLHttpRequest Object</h1>
+<button type="button" onclick="loadDoc()">Change Content</button>
+</div>
+
+<script>
+function loadDoc() {
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      document.getElementById("demo").innerHTML =
+      this.responseText;
+    }
+  };
+  xhttp.open("GET", "get_from_table.js?table=CUSTOMER_LIST_2&key=3", true);
+  xhttp.send();
+}
+</script>
+
+</body>
+</html>
