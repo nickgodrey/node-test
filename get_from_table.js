@@ -12,9 +12,9 @@ var jsonArgs = JSON.parse(args);
 var params = {
   TableName: (jsonArgs.table),
   Key: {
-    'CUSTOMER_ID' : {N: (jsonArgs.key)},
+    'USER_ID' : {S: (jsonArgs.key)},
   },
-  ProjectionExpression: 'CUSTOMER_NAME'
+  //ProjectionExpression: 'CUSTOMER_NAME'
 };
 
 // Call DynamoDB to read the item from the table
